@@ -1,0 +1,19 @@
+apiVersion: extensions.istio.io/v1alpha1
+kind: WasmPlugin
+metadata:
+  name: some-wasm-http-header
+  namespace: istio-system
+spec:
+  imagePullPolicy: Always
+  imagePullSecret: same-namespace-dockercfg-secert
+  pluginConfig:
+    some_info:
+      aa: "bb"
+      ab: "bc"
+  selector:
+    matchLabels:
+      app: istio-ingressgateway-xxx
+      istio: ingressgateway
+  url: oci://xx/xxx/wasm_config_dev@sha256:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  phase: AUTHN
+  priority: 251
